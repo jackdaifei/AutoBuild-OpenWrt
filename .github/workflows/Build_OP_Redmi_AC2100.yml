@@ -65,6 +65,7 @@ jobs:
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
         echo "src-git ssrp https://github.com/fw876/helloworld.git" >> ./feeds.conf.default
+        echo "src-git passwall https://github.com/xiaorouji/openwrt-passwall" >>feeds.conf.default
     - name: Update & Install feeds
       working-directory: ./openwrt
       run: |
@@ -72,10 +73,11 @@ jobs:
         ./scripts/feeds install -a
         ./scripts/feeds install -a
         
-    #- name: Import external feeds - JerryKuKu Argon
-    #  working-directory: ./openwrt
-    #  run: |
-    #    git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon-jerrykuku   
+    - name: Import external feeds
+      working-directory: ./openwrt
+      run: |
+        git clone https://github.com/jerrykuku/lua-maxminddb.git package/lean/
+        git clone https://github.com/jerrykuku/luci-app-vssr.git package/lean/
   
     - name: Configuration Customization - Build_Redmi_AC2100
       env:
