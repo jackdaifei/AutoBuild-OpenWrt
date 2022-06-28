@@ -82,10 +82,10 @@ jobs:
         ./scripts/feeds install -a
         
     - name: Import external feeds
-      working-directory: ./openwrt
       run: |
-        git clone https://github.com/jerrykuku/lua-maxminddb.git package/lean/
-        git clone https://github.com/jerrykuku/luci-app-vssr.git package/lean/
+        cd openwrt/package/lean/
+        git clone https://github.com/jerrykuku/lua-maxminddb.git 
+        git clone https://github.com/jerrykuku/luci-app-vssr.git 
   
     - name: Configuration Customization - Build_Redmi_AC2100
       env:
